@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="lo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ມີເລື່ອງຢາກຖາມ💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Itim', cursive;
+  background: linear-gradient(135deg, #ffe4ec, #ffffff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 💖 floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  animation: float 6s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
+}
+
+.card {
+  background: #fff;
+  width: 92%;
+  max-width: 380px;
+  padding: 24px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+  animation: pop 0.4s ease;
+  z-index: 2;
+}
+
+@keyframes pop {
+  from {transform: scale(0.9); opacity:0;}
+  to {transform: scale(1); opacity:1;}
+}
+
+img {
+  width: 160px;
+  margin-bottom: 15px;
+}
+
+h1 { font-size: 22px; }
+p { font-size: 16px; color: #444; }
+
+button {
+  border: none;
+  padding: 12px 22px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 8px;
+  transition: 0.2s;
+}
+
+button:active { transform: scale(0.95); }
+
+.next, .yes {
+  background: #ff6f91;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(255,111,145,0.6);
+}
+
+.no {
+  background: #ddd;
+  color: #555;
+  position: relative;
+}
+
+.music {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: #ff6f91;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 3;
+}
+</style>
+</head>
+
+<body>
+
+<div class="music" onclick="toggleMusic()">🎵 เพลง</div>
+<div class="card" id="app"></div>
+
+<!-- 🔊 sounds -->
+<audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-soft-click-1126.mp3"></audio>
+<audio id="heartSound" src="https://assets.mixkit.co/sfx/preview/mixkit-heartbeat-1174.mp3"></audio>
+<audio id="bgm" loop>
+  <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-piano-melody-344.mp3">
+</audio>
+
+<script>
+let step = 1;
+let musicOn = false;
+
+function playClick() {
+  document.getElementById("clickSound").play();
+  document.getElementById("heartSound").play();
+}
+
+function toggleMusic(){
+  const bgm = document.getElementById("bgm");
+  if(musicOn){
+    bgm.pause();
+  } else {
+    bgm.play();
+  }
+  musicOn = !musicOn;
+}
+
+function render() {
+  const app = document.getElementById("app");
+
+  if (step === 1) {
+    app.innerHTML = `
+      <img src="https://media3.giphy.com/media/wvYNSqBAMDVx8CEYkt/giphy.gif">
+      <h1>ສະບາຍດີ ຄົນໜ້າຮັກ 💗</h1>
+      <p>
+        ມື້ນີ້ມີເລື່ອງສຳຄັນຢາກສິຖາມ ? ເເຕ່ກ່ອນສິຖາມ ຂ້ອຍຢາກພາເຈົ້າມາເບິ່ງຫຍັງນ້ອຍໆ ທີ່ມີແຕ່ຄວາມຈິງໃຈ ແລະ ຄວາມໜ້າຮັກກ່ອນ
+      </p>
+      <button class="next" onclick="playClick();step=2;render()">ກົດຕໍ່ 👉</button>
+    `;
+  }
+
+  if (step === 2) {
+    app.innerHTML = `
+      <img src="https://media1.giphy.com/media/3Ev8JMnsNqUM/giphy.gif">
+      <h1>ເຈົ້າຮູ້ບໍ່? 😳</h1>
+      <p>
+        ຕັ້ງແຕ່ມື້ທີ່ເຮົາໄດ້ຮູ້ຈັກກັນ ຫົວໃຈຂ້ອຍມັນຍິ້ມທຸກມື້ ທຸກໆມື້ທີ່ມີເຈົ້າ ມັນເຮັດໃຫ້ຂ້ອຍຍິ້ມໄດ້ ຂໍໃຫ້ເຈົ້າຮູ້ວ່າ ຂ້ອຍຮູ້ສຶກດີຫຼາຍໆ ທີ່ມີເຈົ້າ ຢາກຢູ່ໃກ້ໆ ຢາກຢູ່ຂ້າງໆ ແລະຢາກດູແລເຈົ້າໃນທຸກໆມື້ ຂ້ອຍພຽງແຕ່ຢາກບອກ ວ່າຂ້ອຍຮູ້ສຶກດີກັບເຈົ້າ ແລະຢາກຈິງຈັງກັບຄວາມຮູ້ສຶກນີ້ 💕
+      </p>
+      <button class="next" onclick="playClick();step=3;render()">ເເລະສຸດທ້າຍນີ້… 👉</button>
+    `;
+  }
+
+  if (step === 3) {
+    app.innerHTML = `
+      <img src="https://media2.giphy.com/media/x90dwDUuUx9Ys/giphy.gif">
+      <h1>ໃຊ້ຄຳວ່າເເຟນຮ່ວມກັບຂ້ອຍໄດ້ບໍ່? 💞</h1>
+      <p>
+        ເພື່ອໃຫ້ທູກຢ່າງຊັດເຈນຂື້ນ ຂ້ອຍບໍ່ສັນຍາວ່າຈະດີທີ່ສຸດ ແຕ່ຂ້ອຍສັນຍາວ່າຈະຮັກເຈົ້າໃຫ້ດີທີ່ສຸດ 💖
+      </p>
+      <button class="yes" onclick="yes()">ຕົກລົງ 💘</button>
+      <button class="no" onmouseover="moveNo(this)">ບໍ່ຕົກລົງ 🙈</button>
+    `;
+  }
+}
+
+function yes() {
+  playClick();
+  confetti();
+  document.getElementById("app").innerHTML = `
+    <img src="https://media0.giphy.com/media/OvpA7YvA9INE7bgGOy/giphy.gif">
+    <h1>ເຮົາເປັນແຟນກັນແລ້ວເດິ້ 💑</h1>
+    <p>ຂໍໃຫ້ດູແລກັນໄປດົນໆນະ 💕</p>
+  `;
+}
+
+function moveNo(btn) {
+  const x = Math.random() * 250 - 125;
+  const y = Math.random() * 250 - 125;
+  btn.style.transform = `translate(${x}px, ${y}px)`;
+}
+
+function confetti() {
+  for(let i=0;i<30;i++){
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerText="💖";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=3+Math.random()*3+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+}
+
+setInterval(confetti, 2500);
+render();
+</script>
+
+</body>
+</html>
